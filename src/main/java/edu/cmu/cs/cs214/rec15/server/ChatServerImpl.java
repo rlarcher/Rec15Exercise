@@ -175,6 +175,17 @@ public class ChatServerImpl extends Thread implements ChatServer {
             // server. HINT: This will look very similar to onNewMessage but
             // instead of notifying the clients of the new message, it will
             // notify them of a joining user.
+        	synchronized(clients) {
+        		for(Socket s : clients) {
+        			try {
+        				ObjectOutputStream out = new ObjectOutputStream(
+        						s.getOutputStream());
+        				out.writeObject("Server: " + username + " has joined.\n");
+        			} catch (IOException e) {
+        				Log.e(TAG,"Unable to notify clients of joiner.");
+        			}
+        		}
+        	}
         }
 
 
