@@ -170,6 +170,7 @@ public class ChatServerImpl extends Thread implements ChatServer {
         }
 
 
+
         private void onJoin(String username) {
             // TODO: Notify all clients that the given user has connected to the
             // server. HINT: This will look very similar to onNewMessage but
